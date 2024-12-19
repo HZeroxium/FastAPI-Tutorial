@@ -1,0 +1,115 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*.so
+
+# C extensions
+*.pyd
+
+# Distribution / packaging
+.Python
+*.egg-info/
+*.egg
+dist/
+build/
+eggs/
+parts/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg-info/
+*.manifest
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Pyenv
+.python-version
+
+# Virtual environments
+.venv/
+ENV/
+env/
+venv/
+venv.bak/
+
+# IDE settings
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+*.bak
+*.tmp
+
+# Alembic
+alembic/versions/
+migrations/
+alembic.ini.bak
+
+# Environment variables
+.env
+*.env.*
+
+# Log files
+*.log
+
+# Django stuff (if not applicable, you can remove this section)
+*.sqlite3
+db.sqlite3
+*.db
+
+# Pytest cache
+.cache/
+pytestdebug.log
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# MyPy
+.mypy_cache/
+dmypy.json
+dmypy.json.5
+
+# Pyre
+.pyre/
+
+# Coverage reports
+htmlcov/
+.coverage
+*.cover
+*.py,cover
+
+# Pyright
+pyrightconfig.json
+
+# FastAPI specific
+uvicorn.log
+uvicorn.error.log
+
+# Requirements files
+*.lock
+
+# Temporary Files
+*.tmp
+*.log
+*.pid
+*.gz
+*.bz2
+*.xz
+*.7z
+*.bak
+.DS_Store
+
+# Thumbs.db
+Thumbs.db
+
+# IDE-specific files
+*.code-workspace
+
+# Docker
+docker-compose.override.yml
+.dockerignore
+Dockerfile
