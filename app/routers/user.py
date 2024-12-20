@@ -5,11 +5,11 @@ from sqlalchemy.orm import Session
 from app.schemas.user import UserUpdate, UserResponse
 from app.services.user import get_user_by_id, update_user, delete_user
 from app.db.database import get_db
-from fastapi.security import OAuth2PasswordBearer
+from app.models.user import User as UserModel
+from app.services.auth import get_current_admin_user
+
 
 router = APIRouter(prefix="/users", tags=["Users"])
-
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/auth/login")
 
 
 @router.get("/{user_id}", response_model=UserResponse)
@@ -35,7 +35,11 @@ async def update_user_info(
 
 
 @router.delete("/{user_id}", response_model=UserResponse)
-async def delete_user_account(user_id: int, db: Session = Depends(get_db)):
+async def delete_user_account(
+    user_id: int,
+    current_user: UserModel = Depends(get_current_admin_user),
+    db: Session = Depends(get_db),
+):
     deleted_user = delete_user(db, user_id)
     if not deleted_user:
         raise HTTPException(

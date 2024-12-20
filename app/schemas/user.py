@@ -1,6 +1,6 @@
 # schemas/user.py
 
-from pydantic import BaseModel, EmailStr, Field, model_validator
+from pydantic import BaseModel, EmailStr, Field, field_validator
 from typing import Optional
 from datetime import datetime
 
@@ -13,13 +13,12 @@ class UserCreate(UserBase):
     password: str = Field(..., min_length=6, example="password123")
     confirm_password: str = Field(..., example="password123")
 
-    @classmethod
-    def passwords_match(cls, values):
+    @field_validator("confirm_password")
+    def passwords_match(cls, confirm_password, values, **kwargs):
         password = values.get("password")
-        confirm_password = values.get("confirm_password")
         if password != confirm_password:
             raise ValueError("Passwords do not match")
-        return values
+        return confirm_password
 
 
 class UserUpdate(BaseModel):
@@ -30,8 +29,9 @@ class UserUpdate(BaseModel):
 class UserResponse(UserBase):
     id: int
     is_active: bool
+    role: str
     created_at: datetime
     updated_at: Optional[datetime]
 
     class Config:
-        orm_mode = True
+        from_attributes = True
