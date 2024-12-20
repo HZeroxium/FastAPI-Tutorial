@@ -13,13 +13,6 @@ class UserCreate(UserBase):
     password: str = Field(..., min_length=6, example="password123")
     confirm_password: str = Field(..., example="password123")
 
-    @field_validator("confirm_password")
-    def passwords_match(cls, confirm_password, values, **kwargs):
-        password = values.get("password")
-        if password != confirm_password:
-            raise ValueError("Passwords do not match")
-        return confirm_password
-
 
 class UserUpdate(BaseModel):
     email: Optional[EmailStr] = None

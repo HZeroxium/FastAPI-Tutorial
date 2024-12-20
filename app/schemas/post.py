@@ -2,6 +2,7 @@
 from pydantic import BaseModel, Field, field_validator
 from typing import Optional, List
 from datetime import datetime
+from .user import UserResponse
 
 
 class PostBase(BaseModel):
@@ -32,6 +33,7 @@ class PostResponse(PostBase):
     id: int
     created_at: datetime
     updated_at: Optional[datetime]
+    owner: UserResponse
 
     class Config:
         from_attributes = True

@@ -32,8 +32,10 @@ async def login(form_data: LoginRequest, db: Session = Depends(get_db)):
             detail="Invalid credentials",
             headers={"WWW-Authenticate": "Bearer"},
         )
+    data = {"sub": user.id, "email": user.email, "role": user.role}
+    print(data)
     access_token = create_access_token(
-        data={"sub": user.id, "email": user.email, "role": user.role},
+        data=data,
         expires_delta=timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES),
     )
     return {"access_token": access_token, "token_type": "bearer"}

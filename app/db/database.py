@@ -2,14 +2,8 @@
 
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
-import os
-from dotenv import load_dotenv
+from ..config import DATABASE_URL, DATABASE_POOL_SIZE, DATABASE_MAX_OVERFLOW
 
-# Load environment variables
-load_dotenv()
-
-# Database URL from environment variables
-DATABASE_URL = os.getenv("DATABASE_URL")
 
 if not DATABASE_URL:
     raise ValueError("DATABASE_URL environment variable is not set!")
@@ -17,8 +11,8 @@ if not DATABASE_URL:
 # Create database connection
 engine = create_engine(
     DATABASE_URL,
-    pool_size=int(os.getenv("DB_POOL_SIZE", 10)),
-    max_overflow=int(os.getenv("DB_MAX_OVERFLOW", 20)),
+    pool_size=DATABASE_POOL_SIZE,
+    max_overflow=DATABASE_MAX_OVERFLOW,
     pool_pre_ping=True,  # Ensures connections are valid before usage
 )
 

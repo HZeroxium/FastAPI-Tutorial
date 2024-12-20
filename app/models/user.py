@@ -3,6 +3,7 @@
 from sqlalchemy import Column, Integer, String, Boolean
 from sqlalchemy.sql.sqltypes import TIMESTAMP
 from sqlalchemy.sql import func
+from sqlalchemy.orm import relationship
 from app.db.database import Base
 
 
@@ -17,3 +18,9 @@ class User(Base):
     role = Column(String(50), default="user")
     created_at = Column(TIMESTAMP, nullable=False, server_default=func.now())
     updated_at = Column(TIMESTAMP, nullable=True, onupdate=func.now())
+
+    # Relationship to posts
+    posts = relationship("Post", back_populates="owner")
+
+    # Relationship to votes
+    votes = relationship("Vote", back_populates="user", cascade="all, delete-orphan")
