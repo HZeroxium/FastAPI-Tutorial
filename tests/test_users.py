@@ -1,7 +1,6 @@
 # tests/test_users.py
 
 from app.schemas.auth import TokenResponse
-from conftest import client
 
 
 def test_root(client):
