@@ -28,6 +28,11 @@ on:
 
 jobs:
   job1:
+    environment:
+      name: testing
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
     runs-on: ubuntu-latest
 
     steps:
