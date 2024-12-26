@@ -6,12 +6,29 @@ from datetime import datetime
 
 
 class UserBase(BaseModel):
-    email: EmailStr = Field(..., example="user@example.com")
+    email: EmailStr = Field(...)
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": {
+                "email": "user@example.com",
+            }
+        }
+    }
 
 
 class UserCreate(UserBase):
-    password: str = Field(..., min_length=6, example="password123")
-    confirm_password: str = Field(..., example="password123")
+    password: str = Field(..., min_length=6)
+    confirm_password: str = Field(...)
+
+    model_config = {
+        "json_schema_extra": {
+            "examples": {
+                "password": "password123",
+                "confirm_password": "password123",
+            }
+        }
+    }
 
 
 class UserUpdate(BaseModel):
@@ -26,5 +43,4 @@ class UserResponse(UserBase):
     created_at: datetime
     updated_at: Optional[datetime]
 
-    class Config:
-        from_attributes = True
+    model_config = {"from_attributes": True}
