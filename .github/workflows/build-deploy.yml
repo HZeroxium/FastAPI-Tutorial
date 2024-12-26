@@ -1,0 +1,38 @@
+name: Build and Deploy FastAPI
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+      - release/*
+      - support/*
+      - refactor/*
+      - chore/*
+      - docs/*
+  pull_request:
+    branches:
+      - main
+      - dev
+      - feature/*
+      - bugfix/*
+      - hotfix/*
+      - release/*
+      - support/*
+      - refactor/*
+      - chore/*
+      - docs/*
+
+jobs:
+  job1:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Say hello
+        run: echo "Hello, world!"
